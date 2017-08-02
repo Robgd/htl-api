@@ -1,0 +1,169 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ApiResource
+ * @ORM\Entity
+ */
+class Tutorial
+{
+    /**
+     * @var int
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column
+     * @Assert\NotBlank
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column
+     * @Assert\NotBlank
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column
+     * @Assert\NotBlank
+     */
+    private $link;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column
+     */
+    private $content;
+
+    /**
+     * @var Author
+     *
+     * @ORM\ManyToMany(targetEntity="Author")
+     */
+    private $author;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return Tutorial
+     */
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     *
+     * @return Tutorial
+     */
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink(): string
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string $link
+     *
+     * @return Tutorial
+     */
+    public function setLink(string $link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return Tutorial
+     */
+    public function setContent(string $content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param string $author
+     *
+     * @return Tutorial
+     */
+    public function setAuthor(string $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+}

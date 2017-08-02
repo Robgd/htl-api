@@ -16,11 +16,8 @@ services:
       # This is for assets:install
       - ./web:/srv/api-platform/web:rw
       # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
-      - /srv/api-platform/var/
-      - /srv/api-platform/var/cache/
-      - /srv/api-platform/var/logs/
-      - /srv/api-platform/var/sessions/
-      - /srv/api-platform/vendor/
+      - ./var:/srv/api-platform/var/
+      - ./vendor:/srv/api-platform/vendor/
   db:
     build:
       context: ./docker/db
@@ -32,9 +29,9 @@ services:
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_USER=api_platform
     volumes:
-      - db-data:/var/lib/mysql:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/mysql:rw
+       - ./docker/db/data:/var/lib/mysql:rw
+    ports:
+         - "3306:3306"
   nginx:
     build:
       context: ./docker/nginx

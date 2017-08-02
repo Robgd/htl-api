@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ApiResource
+ * @ORM\Entity
+ */
+class Author
+{
+    /**
+     * @var int
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column
+     * @Assert\NotBlank
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column
+     * @Assert\NotBlank
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column
+     * @Assert\NotBlank
+     */
+    private $alias;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column
+     */
+    private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToMany(targetEntity="Author")
+     */
+    private $author;
+}
